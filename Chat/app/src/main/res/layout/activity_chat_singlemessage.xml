@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content" >
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:clickable="false"
+        android:id="@+id/layoutcontainer"
+        android:layout_margin="10dp"
+        android:gravity="right">
+
+        <LinearLayout
+            android:id="@+id/singleMessageContainer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bubble_a">
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:paddingLeft="15dp"
+                android:paddingTop="2dp"
+                android:paddingRight="30dp"
+                android:paddingBottom="1dp">
+
+                <TextView
+                    android:id="@+id/singleMessage"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="left"
+
+                    android:text="Hello bubbles!"
+                    android:textColor="#722716"
+                    android:textSize="15dp"
+                    android:paddingBottom="2dp"
+                    android:textColorHighlight="#ffffff"
+                    android:textStyle="bold" />
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        android:id="@+id/whatfound"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Found :  "
+                        android:textColor="#5c5c5c"
+                        android:textSize="15dp" />
+
+                    <TextView
+                        android:id="@+id/recip"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+
+                        android:text="Hello bubbles!"
+                        android:textColor="#ffffff"
+                        android:textSize="16dp" />
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="2018-04-23  04:34 pm"
+            android:id="@+id/textView"
+            android:textSize="8dp"
+            android:textColor="#9e9e9e"
+            android:layout_marginLeft="15dp" />
+
+    </LinearLayout>
+
+</LinearLayout>
