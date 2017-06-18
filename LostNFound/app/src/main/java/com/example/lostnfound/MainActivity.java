@@ -34,6 +34,7 @@ public class MainActivity extends AppCompatActivity {
     private ViewPager mViewPager;static
 
     ArrayList<String> contact,material,place,whatis,catag;
+    static int catshow;
 
 
 
@@ -62,6 +63,8 @@ public class MainActivity extends AppCompatActivity {
         whatis = getIntent().getStringArrayListExtra("whatis");
         catag = getIntent().getStringArrayListExtra("catag");
         int no = getIntent().getIntExtra("no",0);
+        catshow = getIntent().getIntExtra("catshow",0);
+        String where = getIntent().getStringExtra("where");
 
 
 
@@ -141,6 +144,7 @@ public class MainActivity extends AppCompatActivity {
                 dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                 final Spinner spinner = (Spinner) rootView.findViewById(R.id.spinner);
                 spinner.setAdapter(dataAdapter);
+                spinner.setSelection(catshow);
                 eventAdapter = new EventAdapter(this.getActivity(), R.layout.activity_chat_singlemessage);
                 listViewlost = (ListView) rootView.findViewById(R.id.listViewlost);
                 listViewlost.setAdapter(eventAdapter);
@@ -167,11 +171,14 @@ public class MainActivity extends AppCompatActivity {
                     public void onClick(View v) {
                         String choice = spinner.getSelectedItem().toString();
                         Intent intent = new Intent(getContext(),Main3Activity.class);
-                        if(choice.equals("All"))choice="0";
-                        if(choice.equals("Electronics"))choice="1";
-                        if(choice.equals("Books"))choice="2";
-                        if(choice.equals("Goods"))choice="3";
+                        int ch=0;
+                        if(choice.equals("All")){choice="0";ch=0;}
+                        if(choice.equals("Electronics")){choice="1";ch=1;}
+                        if(choice.equals("Books")){choice="2";ch=2;}
+                        if(choice.equals("Goods")){choice="3";ch=3;}
                         intent.putExtra("catag",choice);
+
+                        intent.putExtra("catshow",ch);
                         startActivity(intent);
                     }
                 });
@@ -189,6 +196,7 @@ public class MainActivity extends AppCompatActivity {
 
 
                 spinner2.setAdapter(dataAdapter);
+                spinner2.setSelection(catshow);
                 listViewfound.setAdapter(eventAdapter2);
                 int count = 0;
                 int no = material.size();
@@ -209,11 +217,14 @@ public class MainActivity extends AppCompatActivity {
                     public void onClick(View v) {
                         String choice = spinner2.getSelectedItem().toString();
                         Intent intent = new Intent(getContext(),Main3Activity.class);
-                        if(choice.equals("All"))choice="0";
-                        if(choice.equals("Electronics"))choice="1";
-                        if(choice.equals("Books"))choice="2";
-                        if(choice.equals("Goods"))choice="3";
+                        int ch=0;
+                        if(choice.equals("All")){choice="0";ch=0;}
+                        if(choice.equals("Electronics")){choice="1";ch=1;}
+                        if(choice.equals("Books")){choice="2";ch=2;}
+                        if(choice.equals("Goods")){choice="3";ch=3;}
                         intent.putExtra("catag",choice);
+
+                        intent.putExtra("catshow",ch);
                         startActivity(intent);
                     }
                 });

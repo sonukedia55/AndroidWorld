@@ -96,10 +96,15 @@ public class EventAdapter extends ArrayAdapter{
         contactHolder.tx_material.setText(eventing.getMaterial());
         contactHolder.tx_place.setText("Location : "+eventing.getPlace());
         contactHolder.tx_contact.setText("Contact : "+eventing.getContact());
-        contactHolder.tx_category.setText("Category : "+eventing.getCatag());
+        String aa="";
+        if(eventing.getCatag().equals("0")){aa="All";}
+        if(eventing.getCatag().equals("1")){aa="Electronics";}
+        if(eventing.getCatag().equals("2")){aa="Books";}
+        if(eventing.getCatag().equals("3")){aa="Goods";}
+        contactHolder.tx_category.setText("Category : "+aa);
 
 
-        new ImageLoadTask("https://cdn.pixabay.com/photo/2013/04/06/11/50/image-editing-101040_1280.jpg", contactHolder.imageView2).execute();
+        new ImageLoadTask("https://s-media-cache-ak0.pinimg.com/736x/07/5e/13/075e1398616a3497d8083437f6bdd70c.jpg", contactHolder.imageView2).execute();
 
         //contactHolder.imageView2.setImageBitmap(getBitmapFromURL());
 

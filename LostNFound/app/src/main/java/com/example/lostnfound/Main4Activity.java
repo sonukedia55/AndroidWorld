@@ -13,6 +13,9 @@ public class Main4Activity extends AppCompatActivity {
 
         Intent intent = new Intent(this, Main3Activity.class);
         intent.putExtra("catag", "0");
+        intent.putExtra("where","1");
+        intent.putExtra("catshow",0);
         startActivity(intent);
+        finish();
     }
 }

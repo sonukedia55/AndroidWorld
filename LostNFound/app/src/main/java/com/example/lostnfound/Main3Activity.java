@@ -19,6 +19,8 @@ public class Main3Activity extends AppCompatActivity {
         //Intent intent= new Intent();
         //String catagg = "1";//intent.getStringExtra("catag");
         String catagg = getIntent().getStringExtra("catag");
+        String where = getIntent().getStringExtra("where");
+        int catshow = getIntent().getIntExtra("catshow",0);
 
         contact = new ArrayList();
         material = new ArrayList();
@@ -118,7 +120,10 @@ public class Main3Activity extends AppCompatActivity {
         intent2.putStringArrayListExtra("whatis", whatis2);
         intent2.putStringArrayListExtra("catag", catag2);
         intent2.putExtra("no",no);
+        intent2.putExtra("where",where);
+        intent2.putExtra("catshow",catshow);
         startActivity(intent2);
+        finish();
 
 
     }
