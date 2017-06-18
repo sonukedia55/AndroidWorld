@@ -29,213 +29,40 @@
                     android:textAppearance="?android:attr/textAppearanceLarge"
                     android:text="Found"
                     android:id="@+id/textView10"
-                    android:textSize="35dp"
+                    android:textSize="30dp"
                     android:textColor="#ffffff"
                     android:layout_weight="1"
                     android:layout_margin="10dp" />
 
                 <Spinner
-                    android:layout_width="150dp"
+                    android:layout_width="120dp"
                     android:layout_height="wrap_content"
-                    android:id="@+id/spinner2" />
+                    android:id="@+id/spinner2"
+                    android:padding="5dp"
+                    android:background="@drawable/gradient_spinner"/>
 
                 <ImageButton
                     android:layout_width="50dp"
                     android:layout_height="50dp"
-                    android:id="@+id/imageButton"
+                    android:id="@+id/filterFound"
                     android:src="@android:drawable/ic_menu_search"
                     android:background="#4d8e6d"
                     android:layout_marginLeft="5dp"
                     android:layout_marginRight="10dp"
-                    android:scaleType="fitXY" />
+                    android:scaleType="fitXY"
+                    android:onClick="Filter" />
             </LinearLayout>
         </LinearLayout>
 
         <LinearLayout
+            android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="150dp"
-            android:background="#dfdfdf"
-            android:layout_margin="2dp"
-            android:gravity="center"
-            android:orientation="vertical" >
+            android:layout_height="match_parent">
 
-            <LinearLayout
-                android:orientation="horizontal"
+            <ListView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:gravity="center" >
-
-                <ImageView
-                    android:layout_width="150dp"
-                    android:layout_height="150dp"
-                    android:id="@+id/imageView2"
-                    android:src="@android:drawable/ic_input_get"
-                    android:scaleType="fitXY"
-                    android:padding="20dp" />
-
-                <LinearLayout
-                    android:orientation="vertical"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:gravity="center_vertical"
-                    android:layout_gravity="left" >
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textAppearance="?android:attr/textAppearanceMedium"
-                        android:text="USB Charger"
-                        android:id="@+id/textView4"
-                        android:textColor="#4ca778"
-                        android:textSize="20dp"
-                        android:layout_margin="2dp" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textAppearance="?android:attr/textAppearanceMedium"
-                        android:text="Found Near : Canteen"
-                        android:id="@+id/textView5"
-                        android:textColor="#828282"
-                        android:textSize="12dp"
-                        android:layout_margin="2dp" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textAppearance="?android:attr/textAppearanceMedium"
-                        android:text="Contact : 9898989898"
-                        android:id="@+id/textView6"
-                        android:textColor="#585858"
-                        android:textSize="15dp"
-                        android:layout_margin="2dp" />
-                </LinearLayout>
-            </LinearLayout>
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="150dp"
-            android:background="#dfdfdf"
-            android:layout_margin="2dp"
-            android:gravity="center"
-            android:orientation="vertical" >
-
-            <LinearLayout
-                android:orientation="horizontal"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:gravity="center" >
-
-                <ImageView
-                    android:layout_width="150dp"
-                    android:layout_height="150dp"
-                    android:id="@+id/imageView3"
-                    android:src="@android:drawable/ic_input_get"
-                    android:scaleType="fitXY"
-                    android:padding="20dp" />
-
-                <LinearLayout
-                    android:orientation="vertical"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:gravity="center_vertical"
-                    android:layout_gravity="left" >
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textAppearance="?android:attr/textAppearanceMedium"
-                        android:text="USB Charger"
-                        android:id="@+id/textView7"
-                        android:textColor="#4ca778"
-                        android:textSize="20dp"
-                        android:layout_margin="2dp" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textAppearance="?android:attr/textAppearanceMedium"
-                        android:text="Found Near : Canteen"
-                        android:id="@+id/textView8"
-                        android:textColor="#828282"
-                        android:textSize="12dp"
-                        android:layout_margin="2dp" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textAppearance="?android:attr/textAppearanceMedium"
-                        android:text="Contact : 9898989898"
-                        android:id="@+id/textView9"
-                        android:textColor="#585858"
-                        android:textSize="15dp"
-                        android:layout_margin="2dp" />
-                </LinearLayout>
-            </LinearLayout>
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="150dp"
-            android:background="#dfdfdf"
-            android:layout_margin="2dp"
-            android:gravity="center"
-            android:orientation="vertical">
-
-            <LinearLayout
-                android:orientation="horizontal"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:gravity="center">
-
-                <ImageView
-                    android:layout_width="150dp"
-                    android:layout_height="150dp"
-                    android:id="@+id/imageView"
-                    android:src="@android:drawable/ic_input_get"
-                    android:scaleType="fitXY"
-                    android:padding="20dp" />
-
-                <LinearLayout
-                    android:orientation="vertical"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:gravity="center_vertical"
-                    android:layout_gravity="left">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textAppearance="?android:attr/textAppearanceMedium"
-                        android:text="USB Charger"
-                        android:id="@+id/textView"
-                        android:textColor="#4ca778"
-                        android:textSize="20dp"
-                        android:layout_margin="2dp" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textAppearance="?android:attr/textAppearanceMedium"
-                        android:text="Found Near : Canteen"
-                        android:id="@+id/textView2"
-                        android:textColor="#828282"
-                        android:textSize="12dp"
-                        android:layout_margin="2dp" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textAppearance="?android:attr/textAppearanceMedium"
-                        android:text="Contact : 9898989898"
-                        android:id="@+id/textView3"
-                        android:textColor="#585858"
-                        android:textSize="15dp"
-                        android:layout_margin="2dp" />
-
-                </LinearLayout>
-            </LinearLayout>
+                android:id="@+id/listViewfound" />
         </LinearLayout>
 
     </LinearLayout>

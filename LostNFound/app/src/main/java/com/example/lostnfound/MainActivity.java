@@ -1,5 +1,6 @@
 package com.example.lostnfound;
 
+import android.content.Intent;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
@@ -17,6 +18,9 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.ImageButton;
+import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TextView;
 
@@ -25,38 +29,39 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
-    /**
-     * The {@link android.support.v4.view.PagerAdapter} that will provide
-     * fragments for each of the sections. We use a
-     * {@link FragmentPagerAdapter} derivative, which will keep every
-     * loaded fragment in memory. If this becomes too memory intensive, it
-     * may be best to switch to a
-     * {@link android.support.v4.app.FragmentStatePagerAdapter}.
-     */
-    private SectionsPagerAdapter mSectionsPagerAdapter;
 
-    /**
-     * The {@link ViewPager} that will host the section contents.
-     */
-    private ViewPager mViewPager;
+    private SectionsPagerAdapter mSectionsPagerAdapter;
+    private ViewPager mViewPager;static
+
+    ArrayList<String> contact,material,place,whatis,catag;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-
-
-
-        //Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        //setSupportActionBar(toolbar);
-        // Create the adapter that will return a fragment for each of the three
-        // primary sections of the activity.
         mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
 
         // Set up the ViewPager with the sections adapter.
         mViewPager = (ViewPager) findViewById(R.id.container);
         mViewPager.setAdapter(mSectionsPagerAdapter);
+
+
+
+        contact = new ArrayList();
+        material = new ArrayList();
+        place = new ArrayList();
+        whatis = new ArrayList();
+        catag = new ArrayList();
+
+
+        contact = getIntent().getStringArrayListExtra("contact");
+        material = getIntent().getStringArrayListExtra("material");
+        place = getIntent().getStringArrayListExtra("place");
+        whatis = getIntent().getStringArrayListExtra("whatis");
+        catag = getIntent().getStringArrayListExtra("catag");
+        int no = getIntent().getIntExtra("no",0);
 
 
 
@@ -72,9 +77,7 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
+
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
@@ -113,22 +116,108 @@ public class MainActivity extends AppCompatActivity {
         @Override
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                                  Bundle savedInstanceState) {
+
             View rootView = inflater.inflate(R.layout.fragment_main, container, false);
-            if(getArguments().getInt(ARG_SECTION_NUMBER)==2){
+            final Spinner spinner2 = (Spinner) rootView.findViewById(R.id.spinner2);
+            List<String> list = new ArrayList<String>();
+
+            list.add("All");
+            list.add("Electronics");
+            list.add("Books");
+            list.add("Goods");
+
+            ListView listViewlost, listViewfound;
+            EventAdapter eventAdapter,eventAdapter2;
+
+
+
+
+
+            if(getArguments().getInt(ARG_SECTION_NUMBER)==2) {
+                //list.add("2");
                 rootView = inflater.inflate(R.layout.activity_main2, container, false);
-                Spinner spinner2 = (Spinner) rootView.findViewById(R.id.spinner2);
-                Spinner spinner = (Spinner) rootView.findViewById(R.id.spinner);
-                List<String> list = new ArrayList<String>();
-                list.add("list 1");
-                list.add("list 2");
-                list.add("list 3");
-                ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this,
+                ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this.getActivity(),
                         android.R.layout.simple_spinner_item, list);
                 dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-                spinner2.setAdapter(dataAdapter);
+                final Spinner spinner = (Spinner) rootView.findViewById(R.id.spinner);
                 spinner.setAdapter(dataAdapter);
+                eventAdapter = new EventAdapter(this.getActivity(), R.layout.activity_chat_singlemessage);
+                listViewlost = (ListView) rootView.findViewById(R.id.listViewlost);
+                listViewlost.setAdapter(eventAdapter);
+                int count = 0;
+
+                ImageButton imgg = (ImageButton)rootView.findViewById(R.id.filterLost);
+
+
+                int no = material.size();
+
+
+                while (count < no) {
+                    String b = "lost";
+                    if (whatis.get(count).equals(b)){
+                        Eventing eventing = new Eventing(contact.get(count), material.get(count), place.get(count), whatis.get(count), catag.get(count));
+                        eventAdapter.add(eventing);
+
+                    }
+                    count++;
+                }
+
+                imgg.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        String choice = spinner.getSelectedItem().toString();
+                        Intent intent = new Intent(getContext(),Main3Activity.class);
+                        if(choice.equals("All"))choice="0";
+                        if(choice.equals("Electronics"))choice="1";
+                        if(choice.equals("Books"))choice="2";
+                        if(choice.equals("Goods"))choice="3";
+                        intent.putExtra("catag",choice);
+                        startActivity(intent);
+                    }
+                });
+
+
             }else{
+                //list.add("1");
                 //View rootView = inflater.inflate(R.layout.fragment_main, container, false);
+                ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this.getActivity(),
+                        android.R.layout.simple_spinner_item, list);
+                dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                eventAdapter2 = new EventAdapter(this.getActivity(),R.layout.activity_chat_singlemessage);
+                listViewfound = (ListView)rootView.findViewById(R.id.listViewfound);
+                ImageButton imgg = (ImageButton)rootView.findViewById(R.id.filterFound);
+
+
+                spinner2.setAdapter(dataAdapter);
+                listViewfound.setAdapter(eventAdapter2);
+                int count = 0;
+                int no = material.size();
+
+                while (count < no) {
+                    String b = "found";
+                    if (whatis.get(count).equals(b)){
+                        Eventing eventing = new Eventing(contact.get(count), material.get(count), place.get(count), whatis.get(count), catag.get(count));
+                        eventAdapter2.add(eventing);
+
+                    }
+
+                    count++;
+
+                }
+                imgg.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        String choice = spinner2.getSelectedItem().toString();
+                        Intent intent = new Intent(getContext(),Main3Activity.class);
+                        if(choice.equals("All"))choice="0";
+                        if(choice.equals("Electronics"))choice="1";
+                        if(choice.equals("Books"))choice="2";
+                        if(choice.equals("Goods"))choice="3";
+                        intent.putExtra("catag",choice);
+                        startActivity(intent);
+                    }
+                });
+
             }
 
             //TextView textView = (TextView) rootView.findViewById(R.id.section_label);
@@ -160,23 +249,7 @@ public class MainActivity extends AppCompatActivity {
             return 2;
         }
 
-        @Override
-        public CharSequence getPageTitle(int position) {
-            switch (position) {
-                case 0:
-                    return "SECTION 1";
-                case 1:{
-                    //setContentView(R.layout.activity_main2);
-                    //LayoutInflater inflater;ViewGroup container;
-                   // View rootView = inflater.inflate(R.layout.fragment_main, container, false);
 
-
-                }
-                   // return "SECTION 2";
-                case 2:
-                    return "SECTION 3";
-            }
-            return null;
-        }
     }
+
 }
